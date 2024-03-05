@@ -1,24 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="AirpodsBatteryApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Target Devices" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HPU-ci-hXl">
+                                <rect key="frame" x="133" y="94" width="148" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pIE-VR-AeK">
+                                <rect key="frame" x="0.0" y="164.5" width="414" height="500"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="EWe-or-ho6">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="120"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NnY-fb-9Li">
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="120"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="120" id="Zfc-zp-8Tf"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="EWe-or-ho6" firstAttribute="trailing" secondItem="Y49-TF-fKI" secondAttribute="trailing" id="BR3-VO-BVs"/>
+                                    <constraint firstItem="EWe-or-ho6" firstAttribute="top" secondItem="Y49-TF-fKI" secondAttribute="top" id="bKb-ur-cQx"/>
+                                    <constraint firstItem="EWe-or-ho6" firstAttribute="bottom" secondItem="Y49-TF-fKI" secondAttribute="bottom" id="e8g-gl-B1W"/>
+                                    <constraint firstAttribute="height" constant="500" id="rDz-r5-RDh"/>
+                                    <constraint firstItem="EWe-or-ho6" firstAttribute="width" secondItem="Ko8-nq-JcG" secondAttribute="width" id="tRs-sL-WCU"/>
+                                    <constraint firstItem="EWe-or-ho6" firstAttribute="leading" secondItem="Y49-TF-fKI" secondAttribute="leading" id="yjM-hz-uBb"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="Y49-TF-fKI"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="Ko8-nq-JcG"/>
+                            </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="veg-Lo-3zM">
+                                <rect key="frame" x="132.5" y="737" width="149.5" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="tinted" title="Search New Device"/>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="pIE-VR-AeK" secondAttribute="trailing" id="JYD-QG-jfa"/>
+                            <constraint firstItem="HPU-ci-hXl" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="aAY-5r-gWI"/>
+                            <constraint firstItem="HPU-ci-hXl" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="50" id="l0v-VT-rRk"/>
+                            <constraint firstItem="pIE-VR-AeK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="oHJ-f2-mr5"/>
+                            <constraint firstItem="pIE-VR-AeK" firstAttribute="top" secondItem="HPU-ci-hXl" secondAttribute="bottom" constant="50" id="rGZ-DE-gm8"/>
+                            <constraint firstItem="veg-Lo-3zM" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="rlz-eC-uYv"/>
+                            <constraint firstItem="pIE-VR-AeK" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="sP8-Ti-Sjh"/>
+                            <constraint firstItem="veg-Lo-3zM" firstAttribute="top" secondItem="pIE-VR-AeK" secondAttribute="bottom" constant="72.5" id="zsa-Y8-gUl"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="18.840579710144929" y="81.696428571428569"/>
         </scene>
     </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>
