@@ -6,12 +6,20 @@
 //
 
 import UIKit
+import ExternalAccessory
 
 class ViewController: UIViewController {
-
+    
     override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        let connectedAccessories = EAAccessoryManager.shared().connectedAccessories
+        let supportedProtocols = ["yourProtocol1", "yourProtocol2"]
+        let filteredAccessories = connectedAccessories.filter { accessory in
+            return (accessory.protocolStrings.first).map { supportedProtocols.contains($0) } ?? false
+        }
+        
+        for accessory in filteredAccessories {
+            print(accessory)
+        }
     }
 
 
