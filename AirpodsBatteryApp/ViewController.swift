@@ -14,7 +14,7 @@ class ViewController: UIViewController, CBCentralManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("HERE")
+        print("viewDidLoad")
 
         // Initialize CBCentralManager
         centralManager = CBCentralManager(delegate: self, queue: nil)
@@ -34,11 +34,11 @@ class ViewController: UIViewController, CBCentralManagerDelegate {
         }
     }
 
-    func centralManager( central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
+    func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         print("hi")
         // Process discovered peripherals, including AirPods
         if let name = peripheral.name {
-            print("Discovered peripheral: (name)")
+            print("Discovered peripheral: \(name)")
         }
     }
     
