@@ -8,11 +8,11 @@
 import UIKit
 import ExternalAccessory
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, EAAccessoryDelegate {
     
     override func viewDidLoad() {
         let connectedAccessories = EAAccessoryManager.shared().connectedAccessories
-        let supportedProtocols = ["yourProtocol1", "yourProtocol2"]
+        let supportedProtocols = ["com.apple.mfi-battery", "com.apple.mfi-serial", "org.bluetooth.service.battery_service"]
         let filteredAccessories = connectedAccessories.filter { accessory in
             return (accessory.protocolStrings.first).map { supportedProtocols.contains($0) } ?? false
         }
@@ -20,6 +20,10 @@ class ViewController: UIViewController {
         for accessory in filteredAccessories {
             print(accessory)
         }
+    }
+    
+    func accessoryDidDisconnect(_ accessory: EAAccessory) {
+        //
     }
 
 
