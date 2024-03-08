@@ -80,7 +80,7 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     
     // MARK: - CBPeripheralDelegate methods
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
-        print("didDiscoverServices")
+        print("didDiscoverServices for \(peripheral.name ?? "Unknown peripheral")")
         if let services = peripheral.services {
             for service in services {
                 print("Discovered service: \(service.uuid)")
@@ -94,7 +94,7 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     }
     
     func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
-        print("didDiscoverCharacteristicsFor")
+        print("didDiscoverCharacteristicsFor \(service.uuid) on \(peripheral.name ?? "Unknown peripheral")")
         if let characteristics = service.characteristics {
             for characteristic in characteristics {
                 print("Discovered characteristic: \(characteristic.uuid)")
@@ -108,7 +108,7 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     }
     
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
-        print("didUpdateValueFor")
+        print("didUpdateValueFor \(characteristic.uuid) on \(peripheral.name ?? "Unknown peripheral")")
         if characteristic.uuid == CBUUID(string: "00002A19-0000-1000-8000-00805F9B34FB") {
             // Handle the battery level value
             if let value = characteristic.value {
