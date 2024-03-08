@@ -10,6 +10,8 @@ import CoreBluetooth
 
 class ViewController: UIViewController, CBCentralManagerDelegate {
     var centralManager: CBCentralManager!
+    
+    var peripheralList: [CBPeripheral] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,7 +20,6 @@ class ViewController: UIViewController, CBCentralManagerDelegate {
 
         // Initialize CBCentralManager
         centralManager = CBCentralManager(delegate: self, queue: nil)
-        print(centralManager)
     }
 
     // MARK: - CBCentralManagerDelegate methods
@@ -35,8 +36,8 @@ class ViewController: UIViewController, CBCentralManagerDelegate {
     }
 
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
-        print("hi")
         // Process discovered peripherals, including AirPods
+        peripheralList.append(peripheral)
         if let name = peripheral.name {
             print("Discovered peripheral: \(name)")
         }
@@ -45,6 +46,14 @@ class ViewController: UIViewController, CBCentralManagerDelegate {
     func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
         print("Failed to connect to peripheral: \(peripheral.name ?? "Unknown")")
         print("Error: \(error?.localizedDescription ?? "Unknown error")")
+    }
+    
+    // MARK: - Segue Data Passthrough
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "DevicesListSegue") {
+            let vc = segue.destination as! DevicesListSelectionController
+            vc.peripheralList = self.peripheralList
+        }
     }
 }
 
