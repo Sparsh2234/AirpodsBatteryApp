@@ -11,7 +11,7 @@ import CoreBluetooth
 class ViewController: UIViewController, CBCentralManagerDelegate {
     var centralManager: CBCentralManager!
     
-    var peripheralList: [CBPeripheral] = []
+    var peripheralMap: [UUID: CBPeripheral] = [:]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,9 +37,9 @@ class ViewController: UIViewController, CBCentralManagerDelegate {
 
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         // Process discovered peripherals, including AirPods
-        peripheralList.append(peripheral)
         if let name = peripheral.name {
             print("Discovered peripheral: \(name)")
+            peripheralMap[peripheral.identifier] = peripheral
         }
     }
     
@@ -52,7 +52,7 @@ class ViewController: UIViewController, CBCentralManagerDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "DevicesListSegue") {
             let vc = segue.destination as! DevicesListSelectionController
-            vc.peripheralList = self.peripheralList
+            vc.peripheralMap = self.peripheralMap
         }
     }
 }

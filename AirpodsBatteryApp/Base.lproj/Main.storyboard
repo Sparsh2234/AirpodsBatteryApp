@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -17,13 +18,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Target Devices" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HPU-ci-hXl">
-                                <rect key="frame" x="133" y="94" width="148" height="20.5"/>
+                                <rect key="frame" x="133" y="98" width="148" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pIE-VR-AeK">
-                                <rect key="frame" x="0.0" y="164.5" width="414" height="500"/>
+                                <rect key="frame" x="0.0" y="168.5" width="414" height="500"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="EWe-or-ho6">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="120"/>
@@ -50,7 +51,7 @@
                                 <viewLayoutGuide key="frameLayoutGuide" id="Ko8-nq-JcG"/>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="veg-Lo-3zM">
-                                <rect key="frame" x="101" y="737" width="212" height="31"/>
+                                <rect key="frame" x="84.5" y="741" width="245.5" height="34.5"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="tinted" title="View Connected Devices List"/>
                                 <connections>
@@ -81,11 +82,49 @@
             <objects>
                 <viewController id="ICp-uj-WoL" customClass="DevicesListSelectionController" customModule="AirpodsBatteryApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8dT-8e-6rA">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="886"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aU5-Qk-2XK">
+                                <rect key="frame" x="0.0" y="100" width="414" height="786"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Nd2-ak-qc2">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="120"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WLr-vq-TeW">
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="120"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="120" id="hRf-2W-AFr"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="Nd2-ak-qc2" firstAttribute="bottom" secondItem="dvo-Ar-N6p" secondAttribute="bottom" id="95h-nY-hRW"/>
+                                    <constraint firstItem="dvo-Ar-N6p" firstAttribute="top" secondItem="Nd2-ak-qc2" secondAttribute="top" id="CVY-GR-f9D"/>
+                                    <constraint firstItem="Nd2-ak-qc2" firstAttribute="trailing" secondItem="dvo-Ar-N6p" secondAttribute="trailing" id="cez-6F-UfC"/>
+                                    <constraint firstItem="Nd2-ak-qc2" firstAttribute="leading" secondItem="dvo-Ar-N6p" secondAttribute="leading" id="nkY-az-BNZ"/>
+                                    <constraint firstItem="qJh-pY-vgT" firstAttribute="width" secondItem="Nd2-ak-qc2" secondAttribute="width" id="ok6-8U-XIZ"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="dvo-Ar-N6p"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="qJh-pY-vgT"/>
+                            </scrollView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="TO1-Vh-ki9"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="aU5-Qk-2XK" firstAttribute="leading" secondItem="TO1-Vh-ki9" secondAttribute="leading" id="2DP-HR-INv"/>
+                            <constraint firstItem="TO1-Vh-ki9" firstAttribute="bottom" secondItem="aU5-Qk-2XK" secondAttribute="bottom" id="2sV-Ok-NVe"/>
+                            <constraint firstItem="aU5-Qk-2XK" firstAttribute="centerX" secondItem="8dT-8e-6rA" secondAttribute="centerX" id="60Y-VN-ZXC"/>
+                            <constraint firstItem="aU5-Qk-2XK" firstAttribute="top" secondItem="TO1-Vh-ki9" secondAttribute="top" constant="100" id="MZP-f7-2Ph"/>
+                            <constraint firstItem="TO1-Vh-ki9" firstAttribute="trailing" secondItem="aU5-Qk-2XK" secondAttribute="trailing" id="QvN-mH-gCm"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="stackView" destination="Nd2-ak-qc2" id="jxN-eE-Ppb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MXd-JU-C9k" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

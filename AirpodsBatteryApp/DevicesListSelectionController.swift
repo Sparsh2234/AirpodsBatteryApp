@@ -11,13 +11,16 @@ import CoreBluetooth
 
 class DevicesListSelectionController: UIViewController {
     
-    var peripheralList: [CBPeripheral] = []
+    @IBOutlet weak var stackView: UIStackView!
+    var peripheralMap: [UUID: CBPeripheral] = [:]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //
+        for (uuid, peripheral) in peripheralMap {
+            let labelView = UILabel()
+            labelView.text = peripheral.name
+            stackView.addArrangedSubview(labelView)
+        }
     }
-    
 }
     
