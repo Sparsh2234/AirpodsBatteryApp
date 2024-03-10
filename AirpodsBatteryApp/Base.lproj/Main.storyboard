@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -80,50 +80,35 @@
         <!--Devices List Selection Controller-->
         <scene sceneID="kOI-eI-iwZ">
             <objects>
-                <viewController id="ICp-uj-WoL" customClass="DevicesListSelectionController" customModule="AirpodsBatteryApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="devicesSelectionController" id="ICp-uj-WoL" customClass="DevicesListSelectionController" customModule="AirpodsBatteryApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8dT-8e-6rA">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="886"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aU5-Qk-2XK">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="FOw-HY-Ygr">
                                 <rect key="frame" x="0.0" y="100" width="414" height="786"/>
-                                <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Nd2-ak-qc2">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="120"/>
-                                        <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WLr-vq-TeW">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="120"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="120" id="hRf-2W-AFr"/>
-                                                </constraints>
-                                            </view>
-                                        </subviews>
-                                    </stackView>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="Nd2-ak-qc2" firstAttribute="bottom" secondItem="dvo-Ar-N6p" secondAttribute="bottom" id="95h-nY-hRW"/>
-                                    <constraint firstItem="dvo-Ar-N6p" firstAttribute="top" secondItem="Nd2-ak-qc2" secondAttribute="top" id="CVY-GR-f9D"/>
-                                    <constraint firstItem="Nd2-ak-qc2" firstAttribute="trailing" secondItem="dvo-Ar-N6p" secondAttribute="trailing" id="cez-6F-UfC"/>
-                                    <constraint firstItem="Nd2-ak-qc2" firstAttribute="leading" secondItem="dvo-Ar-N6p" secondAttribute="leading" id="nkY-az-BNZ"/>
-                                    <constraint firstItem="qJh-pY-vgT" firstAttribute="width" secondItem="Nd2-ak-qc2" secondAttribute="width" id="ok6-8U-XIZ"/>
-                                </constraints>
-                                <viewLayoutGuide key="contentLayoutGuide" id="dvo-Ar-N6p"/>
-                                <viewLayoutGuide key="frameLayoutGuide" id="qJh-pY-vgT"/>
-                            </scrollView>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ttt-d6-ebP">
+                                <rect key="frame" x="20" y="35" width="171" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="tinted" title="Refresh Device List"/>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="TO1-Vh-ki9"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="aU5-Qk-2XK" firstAttribute="leading" secondItem="TO1-Vh-ki9" secondAttribute="leading" id="2DP-HR-INv"/>
-                            <constraint firstItem="TO1-Vh-ki9" firstAttribute="bottom" secondItem="aU5-Qk-2XK" secondAttribute="bottom" id="2sV-Ok-NVe"/>
-                            <constraint firstItem="aU5-Qk-2XK" firstAttribute="centerX" secondItem="8dT-8e-6rA" secondAttribute="centerX" id="60Y-VN-ZXC"/>
-                            <constraint firstItem="aU5-Qk-2XK" firstAttribute="top" secondItem="TO1-Vh-ki9" secondAttribute="top" constant="100" id="MZP-f7-2Ph"/>
-                            <constraint firstItem="TO1-Vh-ki9" firstAttribute="trailing" secondItem="aU5-Qk-2XK" secondAttribute="trailing" id="QvN-mH-gCm"/>
+                            <constraint firstItem="TO1-Vh-ki9" firstAttribute="bottom" secondItem="FOw-HY-Ygr" secondAttribute="bottom" id="2H0-Kg-oUg"/>
+                            <constraint firstItem="FOw-HY-Ygr" firstAttribute="top" secondItem="TO1-Vh-ki9" secondAttribute="top" constant="100" id="94R-7Y-zke"/>
+                            <constraint firstItem="TO1-Vh-ki9" firstAttribute="trailing" secondItem="FOw-HY-Ygr" secondAttribute="trailing" id="OIz-c7-dEJ"/>
+                            <constraint firstItem="FOw-HY-Ygr" firstAttribute="leading" secondItem="TO1-Vh-ki9" secondAttribute="leading" id="QK6-xf-TDp"/>
+                            <constraint firstItem="Ttt-d6-ebP" firstAttribute="leading" secondItem="TO1-Vh-ki9" secondAttribute="leading" constant="20" id="SaW-oA-skF"/>
+                            <constraint firstItem="FOw-HY-Ygr" firstAttribute="top" secondItem="Ttt-d6-ebP" secondAttribute="bottom" constant="30" id="hIV-Ig-j73"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="stackView" destination="Nd2-ak-qc2" id="jxN-eE-Ppb"/>
+                        <outlet property="refreshButton" destination="Ttt-d6-ebP" id="v0k-KE-ecJ"/>
+                        <outlet property="tableView" destination="FOw-HY-Ygr" id="Ywz-Mw-GZN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MXd-JU-C9k" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

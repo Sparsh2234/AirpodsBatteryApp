@@ -9,21 +9,33 @@ import UIKit
 import CoreBluetooth
 
 class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDelegate {
-    var centralManager: CBCentralManager!
     
+    var centralManager: CBCentralManager!
     var peripheralMap: [UUID: CBPeripheral] = [:]
-
+    var peripheralList: [CBPeripheral] = []
+    var devicesSelectionController: DevicesListSelectionController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("viewDidLoad")
-
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        devicesSelectionController = storyBoard.instantiateViewController(withIdentifier: "devicesSelectionController") as? DevicesListSelectionController
+        
         // Initialize CBCentralManager
         centralManager = CBCentralManager(delegate: self, queue: nil)
     }
-
+    
+    // MARK: - Segue Data Passthrough
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "DevicesListSegue") {
+            let vc = segue.destination as! DevicesListSelectionController
+            vc.peripheralList = self.peripheralList
+            vc.peripheralMap = self.peripheralMap
+        }
+    }
+    
     // MARK: - CBCentralManagerDelegate methods
-
+    
     func centralManagerDidUpdateState( _ central: CBCentralManager) {
         if central.state == .poweredOn {
             // Start scanning for Bluetooth peripherals
@@ -34,29 +46,30 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
             print("NOT scanning: (central.state != .poweredOn)")
         }
     }
-
+    
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         // Process discovered peripherals, including AirPods
         if let name = peripheral.name {
             print("Discovered peripheral: \(name)")
             peripheralMap[peripheral.identifier] = peripheral
             
+            if !peripheralList.contains(peripheral){
+                peripheralList.append(peripheral)
+            }
+            
             // Check if the Battery Service UUID is present in the advertisement data
             if let serviceUUIDs = advertisementData[CBAdvertisementDataServiceUUIDsKey] as? [CBUUID],
-                serviceUUIDs.contains(CBUUID(string: "0000180F-0000-1000-8000-00805F9B34FB")) {
-
-                // Connect to the peripheral to retrieve battery information
-                central.connect(peripheral, options: nil)
+               serviceUUIDs.contains(CBUUID(string: "0000180F-0000-1000-8000-00805F9B34FB")) {
             }
         }
     }
     
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         print("Connected to peripheral: \(peripheral.name ?? "Unknown")")
-
+        
         // Set the peripheral's delegate to self
         peripheral.delegate = self
-
+        
         // Discover services of the connected peripheral
         peripheral.discoverServices(nil)
     }
@@ -68,14 +81,6 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
         print("Disconnected from peripheral: \(peripheral.name ?? "Unknown")")
-    }
-    
-    // MARK: - Segue Data Passthrough
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "DevicesListSegue") {
-            let vc = segue.destination as! DevicesListSelectionController
-            vc.peripheralMap = self.peripheralMap
-        }
     }
     
     // MARK: - CBPeripheralDelegate methods

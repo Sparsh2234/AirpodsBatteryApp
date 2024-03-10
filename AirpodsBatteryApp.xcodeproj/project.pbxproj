@@ -16,6 +16,7 @@
 		9F6C434D2B96FC1B00EDCC9B /* AirpodsBatteryAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6C434C2B96FC1B00EDCC9B /* AirpodsBatteryAppTests.swift */; };
 		9F6C43572B96FC1B00EDCC9B /* AirpodsBatteryAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6C43562B96FC1B00EDCC9B /* AirpodsBatteryAppUITests.swift */; };
 		9F6C43592B96FC1B00EDCC9B /* AirpodsBatteryAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6C43582B96FC1B00EDCC9B /* AirpodsBatteryAppUITestsLaunchTests.swift */; };
+		9FF8CC272B9D96C60006ECBD /* DevicesListSelectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF8CC262B9D96C60006ECBD /* DevicesListSelectionController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		9F6C43522B96FC1B00EDCC9B /* AirpodsBatteryAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AirpodsBatteryAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F6C43562B96FC1B00EDCC9B /* AirpodsBatteryAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirpodsBatteryAppUITests.swift; sourceTree = "<group>"; };
 		9F6C43582B96FC1B00EDCC9B /* AirpodsBatteryAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirpodsBatteryAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		9FF8CC262B9D96C60006ECBD /* DevicesListSelectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DevicesListSelectionController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 				9F6C43352B96FC1900EDCC9B /* AppDelegate.swift */,
 				9F6C43372B96FC1900EDCC9B /* SceneDelegate.swift */,
 				9F6C43392B96FC1900EDCC9B /* ViewController.swift */,
+				9FF8CC262B9D96C60006ECBD /* DevicesListSelectionController.swift */,
 				9F6C433B2B96FC1900EDCC9B /* Main.storyboard */,
 				9F6C433E2B96FC1B00EDCC9B /* Assets.xcassets */,
 				9F6C43402B96FC1B00EDCC9B /* LaunchScreen.storyboard */,
@@ -258,6 +261,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9FF8CC272B9D96C60006ECBD /* DevicesListSelectionController.swift in Sources */,
 				9F6C433A2B96FC1900EDCC9B /* ViewController.swift in Sources */,
 				9F6C43362B96FC1900EDCC9B /* AppDelegate.swift in Sources */,
 				9F6C43382B96FC1900EDCC9B /* SceneDelegate.swift in Sources */,
