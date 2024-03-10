@@ -13,6 +13,7 @@ class DevicesListSelectionController: UIViewController {
     
     var peripheralMap: [UUID: CBPeripheral] = [:]
     var peripheralList: [CBPeripheral] = []
+
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var refreshButton: UIButton!
     

@@ -28,9 +28,9 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     // MARK: - Segue Data Passthrough
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "DevicesListSegue") {
-            let vc = segue.destination as! DevicesListSelectionController
-            vc.peripheralList = self.peripheralList
-            vc.peripheralMap = self.peripheralMap
+            self.devicesSelectionController = segue.destination as? DevicesListSelectionController
+            devicesSelectionController?.peripheralList = self.peripheralList
+            devicesSelectionController?.peripheralMap = self.peripheralMap
         }
     }
     
@@ -53,8 +53,9 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
             print("Discovered peripheral: \(name)")
             peripheralMap[peripheral.identifier] = peripheral
             
-            if !peripheralList.contains(peripheral){
+            if !peripheralList.contains(peripheral) {
                 peripheralList.append(peripheral)
+                devicesSelectionController?.peripheralList.append(peripheral)
             }
             
             // Check if the Battery Service UUID is present in the advertisement data
