@@ -8,11 +8,16 @@
 import UIKit
 import CoreBluetooth
 
-class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDelegate {
+class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDelegate, DevicesListSelectionControllerDelegate {
+    
+    @IBOutlet weak var devicesListStackView: UIStackView!
+    @IBOutlet weak var showDeviceSelectionModalButton: UIButton!
+    
     
     var centralManager: CBCentralManager!
     var peripheralMap: [UUID: CBPeripheral] = [:]
     var peripheralList: [CBPeripheral] = []
+    var addedDeviceSet = Set<String>()
     var devicesSelectionController: DevicesListSelectionController?
     
     override func viewDidLoad() {
@@ -21,16 +26,72 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         devicesSelectionController = storyBoard.instantiateViewController(withIdentifier: "devicesSelectionController") as? DevicesListSelectionController
         
-        // Initialize CBCentralManager
         centralManager = CBCentralManager(delegate: self, queue: nil)
+        
+        showDeviceSelectionModalButton.addTarget(self, action: #selector(presentDeviceSelectionModal), for: .touchUpInside)
     }
     
     // MARK: - Segue Data Passthrough
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "DevicesListSegue") {
-            self.devicesSelectionController = segue.destination as? DevicesListSelectionController
-            devicesSelectionController?.peripheralList = self.peripheralList
-            devicesSelectionController?.peripheralMap = self.peripheralMap
+    //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    //        if (segue.identifier == "DevicesListSegue") {
+    //            self.devicesSelectionController = segue.destination as? DevicesListSelectionController
+    //
+    //        }
+    //    }
+    
+    @objc func presentDeviceSelectionModal(_ sender: UIButton) {
+        devicesSelectionController?.delegate = self
+        devicesSelectionController?.peripheralList = self.peripheralList
+        devicesSelectionController?.peripheralMap = self.peripheralMap
+        if let vc = devicesSelectionController {
+            present(vc, animated: true)
+        }
+    }
+    
+    // MARK: - DevicesListSelectionController Delegate Method
+    
+    func didCompleteDeviceSelection(selectedDeviceList: [String]) {
+        for deviceName in selectedDeviceList {
+            if !addedDeviceSet.contains(deviceName) {
+                addedDeviceSet.insert(deviceName)
+                
+                addedDeviceSet.insert(deviceName)
+                
+                let containerView = UIView()
+                containerView.backgroundColor = UIColor.systemPink.withAlphaComponent(0.2)
+                containerView.layer.cornerRadius = 8
+                
+                let label = UILabel()
+                label.text = deviceName
+                label.textColor = UIColor.black
+                label.font = UIFont.systemFont(ofSize: 16)
+                label.textAlignment = .center
+                
+                // Add label to the container view
+                containerView.addSubview(label)
+                label.translatesAutoresizingMaskIntoConstraints = false
+                NSLayoutConstraint.activate([
+                    label.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
+                    label.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 8),
+                    label.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 12),
+                    label.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -8),
+                    label.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -12),
+                ])
+                
+                // Add the container view to the stack view
+                devicesListStackView.addArrangedSubview(containerView)
+                
+                NSLayoutConstraint.activate([
+                    containerView.leadingAnchor.constraint(equalTo: devicesListStackView.leadingAnchor, constant: 15),
+                    containerView.trailingAnchor.constraint(equalTo: devicesListStackView.trailingAnchor, constant: -15)
+                ])
+                
+                // Apply animation (optional)
+                containerView.alpha = 0
+                UIView.animate(withDuration: 0.3) {
+                    containerView.alpha = 1
+                }
+            }
         }
     }
     

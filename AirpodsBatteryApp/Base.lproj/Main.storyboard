@@ -26,7 +26,7 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pIE-VR-AeK">
                                 <rect key="frame" x="0.0" y="168.5" width="414" height="500"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="EWe-or-ho6">
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="EWe-or-ho6">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="120"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NnY-fb-9Li">
@@ -54,9 +54,6 @@
                                 <rect key="frame" x="84.5" y="741" width="245.5" height="34.5"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="tinted" title="View Connected Devices List"/>
-                                <connections>
-                                    <segue destination="ICp-uj-WoL" kind="presentation" identifier="DevicesListSegue" id="0kg-Ay-zBO"/>
-                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -72,6 +69,10 @@
                             <constraint firstItem="veg-Lo-3zM" firstAttribute="top" secondItem="pIE-VR-AeK" secondAttribute="bottom" constant="72.5" id="zsa-Y8-gUl"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="devicesListStackView" destination="EWe-or-ho6" id="6dZ-ta-3f5"/>
+                        <outlet property="showDeviceSelectionModalButton" destination="veg-Lo-3zM" id="baE-IG-dyO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -82,17 +83,27 @@
             <objects>
                 <viewController storyboardIdentifier="devicesSelectionController" id="ICp-uj-WoL" customClass="DevicesListSelectionController" customModule="AirpodsBatteryApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8dT-8e-6rA">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="886"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="FOw-HY-Ygr">
-                                <rect key="frame" x="0.0" y="100" width="414" height="786"/>
+                                <rect key="frame" x="0.0" y="148" width="414" height="714"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ttt-d6-ebP">
-                                <rect key="frame" x="20" y="35" width="171" height="35"/>
+                                <rect key="frame" x="20" y="83" width="171" height="35"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="tinted" title="Refresh Device List"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5OF-89-YW5">
+                                <rect key="frame" x="329" y="83" width="65" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Done">
+                                    <color key="baseBackgroundColor" systemColor="systemGreenColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="CloseModal:" destination="ICp-uj-WoL" eventType="touchUpInside" id="ppv-uA-KLc"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="TO1-Vh-ki9"/>
@@ -100,15 +111,17 @@
                         <constraints>
                             <constraint firstItem="TO1-Vh-ki9" firstAttribute="bottom" secondItem="FOw-HY-Ygr" secondAttribute="bottom" id="2H0-Kg-oUg"/>
                             <constraint firstItem="FOw-HY-Ygr" firstAttribute="top" secondItem="TO1-Vh-ki9" secondAttribute="top" constant="100" id="94R-7Y-zke"/>
+                            <constraint firstItem="FOw-HY-Ygr" firstAttribute="top" secondItem="5OF-89-YW5" secondAttribute="bottom" constant="30" id="CLr-BG-vN5"/>
                             <constraint firstItem="TO1-Vh-ki9" firstAttribute="trailing" secondItem="FOw-HY-Ygr" secondAttribute="trailing" id="OIz-c7-dEJ"/>
                             <constraint firstItem="FOw-HY-Ygr" firstAttribute="leading" secondItem="TO1-Vh-ki9" secondAttribute="leading" id="QK6-xf-TDp"/>
                             <constraint firstItem="Ttt-d6-ebP" firstAttribute="leading" secondItem="TO1-Vh-ki9" secondAttribute="leading" constant="20" id="SaW-oA-skF"/>
                             <constraint firstItem="FOw-HY-Ygr" firstAttribute="top" secondItem="Ttt-d6-ebP" secondAttribute="bottom" constant="30" id="hIV-Ig-j73"/>
+                            <constraint firstItem="TO1-Vh-ki9" firstAttribute="trailing" secondItem="5OF-89-YW5" secondAttribute="trailing" constant="20" id="uR6-9q-f5k"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="refreshButton" destination="Ttt-d6-ebP" id="v0k-KE-ecJ"/>
-                        <outlet property="tableView" destination="FOw-HY-Ygr" id="Ywz-Mw-GZN"/>
+                        <outlet property="tableView" destination="FOw-HY-Ygr" id="YXK-WQ-vn5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MXd-JU-C9k" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -119,6 +132,9 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
