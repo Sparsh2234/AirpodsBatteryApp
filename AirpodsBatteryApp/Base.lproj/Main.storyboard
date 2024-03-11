@@ -17,8 +17,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Target Devices" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HPU-ci-hXl">
-                                <rect key="frame" x="133" y="98" width="148" height="20.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Targeted Devices" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HPU-ci-hXl">
+                                <rect key="frame" x="141" y="98" width="132.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -51,9 +51,9 @@
                                 <viewLayoutGuide key="frameLayoutGuide" id="Ko8-nq-JcG"/>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="veg-Lo-3zM">
-                                <rect key="frame" x="84.5" y="741" width="245.5" height="34.5"/>
+                                <rect key="frame" x="147.5" y="741" width="119.5" height="34.5"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="tinted" title="View Connected Devices List"/>
+                                <buttonConfiguration key="configuration" style="tinted" title="Add Devices"/>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
