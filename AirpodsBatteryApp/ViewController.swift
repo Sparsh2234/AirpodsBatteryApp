@@ -118,11 +118,6 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
                 peripheralList.append(peripheral)
                 devicesSelectionController?.peripheralList.append(peripheral)
             }
-            
-            // Check if the Battery Service UUID is present in the advertisement data
-            if let serviceUUIDs = advertisementData[CBAdvertisementDataServiceUUIDsKey] as? [CBUUID],
-               serviceUUIDs.contains(CBUUID(string: "0000180F-0000-1000-8000-00805F9B34FB")) {
-            }
         }
     }
     
@@ -143,46 +138,6 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
         print("Disconnected from peripheral: \(peripheral.name ?? "Unknown")")
-    }
-    
-    // MARK: - CBPeripheralDelegate methods
-    func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
-        print("didDiscoverServices for \(peripheral.name ?? "Unknown peripheral")")
-        if let services = peripheral.services {
-            for service in services {
-                print("Discovered service: \(service.uuid)")
-                // Check if the service is the Battery Service
-                if service.uuid == CBUUID(string: "0000180F-0000-1000-8000-00805F9B34FB") {
-                    // Discover characteristics of the Battery Service
-                    peripheral.discoverCharacteristics(nil, for: service)
-                }
-            }
-        }
-    }
-    
-    func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
-        print("didDiscoverCharacteristicsFor \(service.uuid) on \(peripheral.name ?? "Unknown peripheral")")
-        if let characteristics = service.characteristics {
-            for characteristic in characteristics {
-                print("Discovered characteristic: \(characteristic.uuid)")
-                // Check if the characteristic is the Battery Level characteristic
-                if characteristic.uuid == CBUUID(string: "00002A19-0000-1000-8000-00805F9B34FB") {
-                    // Read the value of the Battery Level characteristic
-                    peripheral.readValue(for: characteristic)
-                }
-            }
-        }
-    }
-    
-    func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
-        print("didUpdateValueFor \(characteristic.uuid) on \(peripheral.name ?? "Unknown peripheral")")
-        if characteristic.uuid == CBUUID(string: "00002A19-0000-1000-8000-00805F9B34FB") {
-            // Handle the battery level value
-            if let value = characteristic.value {
-                let batteryLevel = value[0]
-                print("Battery Level: \(batteryLevel)%")
-            }
-        }
     }
 }
 
